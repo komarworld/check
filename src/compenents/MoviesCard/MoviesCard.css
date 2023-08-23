@@ -41,6 +41,7 @@
   border-radius: 50%;
   border: 2px solid #fff;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .movies-card__like_active {
@@ -51,6 +52,7 @@
   border-radius: 50%;
   border: 2px solid #fff;
   background-color: #2be080;
+  cursor: pointer;
 }
 .movies-card__like_delete {
   width: 16px;
@@ -59,6 +61,7 @@
   background-color: transparent;
   border: none;
   background-position: center;
+  cursor: pointer;
 }
 
 .movie-card__duration {

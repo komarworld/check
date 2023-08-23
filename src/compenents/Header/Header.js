@@ -12,7 +12,7 @@ function Header({ loggedIn }) {
   return (
     <header className={`header ${pathname === "/" && "header_green"}`}>
       {MainPage || MoviesPage || SavedMoviesPage || ProfilePage ?
-        <header className="header__container">
+        <div className="header__container">
           <Link className="header__logo" to="/" />
           {
             loggedIn ? <Navigation /> : 
@@ -23,7 +23,7 @@ function Header({ loggedIn }) {
                 <Link to="/signin" className="header__link-main header__link-main_type_signin" >Войти</Link>
               </div>
           }
-        </header>
+        </div>
         : ''}
     </header>
   );

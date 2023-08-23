@@ -15,6 +15,7 @@
   line-height: 18px;
   transition: opacity 0.3s ease-in-out;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .header__link:hover {
@@ -27,7 +28,7 @@
 }
 
 .header__img-account {
-  background-image: url(../../images/account.png);
+  background-image: url(../../images/account.svg);
   height: 30px;
   width: 26px;
   margin-left: 16px;
@@ -194,7 +195,7 @@
 .navigation__img-account {
   display: block;
   background: #202020;
-  background-image: url(../../images/account.png);
+  background-image: url(../../images/account.svg);
   background-repeat: no-repeat;
   background-position: center;
   height: 30px;

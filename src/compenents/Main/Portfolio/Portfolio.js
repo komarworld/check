@@ -9,16 +9,19 @@ function Portfolio() {
           <li className='portfolio__list-item'>
             <a className='portfolio__link' href='https://github.com/komarworld/how-to-learn' target='_blank' rel='noreferrer'>
               Статичный сайт
+              <span className='portfolio__link-arrow'>↗</span>
             </a>
           </li>
           <li className='portfolio__list-item'>
             <a className='portfolio__link' href='https://github.com/komarworld/russian-travel' target='blank' rel='noreferrer'>
               Адаптивный сайт
+              <span className='portfolio__link-arrow'>↗</span>
             </a>
           </li>
           <li className='portfolio__list-item'>
             <a className='portfolio__link' href='https://github.com/komarworld/react-mesto-auth' target='blank' rel='noreferrer'>
               Одностраничное приложение
+              <span className='portfolio__link-arrow'>↗</span>
             </a>
           </li>
         </ul>
