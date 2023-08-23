@@ -79,7 +79,7 @@
     padding: 50px 0 0;
   }
 
-  .portfolio__link {
+  .portfolio__list {
     font-size: 28px;
   }
 }
@@ -94,15 +94,7 @@
   }
 
   
-  .portfolio__link {
-    font-size: 18px;
-    line-height: 28px;
-    letter-spacing: -0.72px;
-  }
-
-  .portfolio__link::after {
-    position: absolute;
-    padding-top: 0px;
+  .portfolio__list {
     font-size: 18px;
     line-height: 28px;
     letter-spacing: -0.72px;
