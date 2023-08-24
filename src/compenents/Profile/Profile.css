@@ -50,32 +50,33 @@
   border: 1px solid #a2a2a2;
 }
 
-.profile__link-edit {
+.profile__link {
   border: none;
   padding: 0;
-  margin: 220px auto 0;
   display: block;
   text-decoration: none;
   background-color: transparent;
-  color: #FFF;
-  text-align: center;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 16px;
-}
-
-.profile__link-exit {
-  border: none;
-  padding: 0;
-  margin: 16px auto 0;
-  background-color: transparent;
-  color: #EE3465;
-  display: block;
   text-decoration: none;
   text-align: center;
   font-size: 13px;
   line-height: 16px;
   font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.profile__link:hover {
+  opacity: 0.7;
+} 
+
+.profile__link-edit {
+  margin: 220px auto 0;
+  color: #FFF;
+}
+
+.profile__link-exit {
+  margin: 16px auto 0;
+  color: #EE3465;
 }
 
 .profile__error {
@@ -130,9 +131,8 @@
   }
   .profile__link-edit {
     margin-top: 379px;
-    font-size: 12px;
   }
-  .profile__link-exit {
+  .profile__link {
     font-size: 12px;
   }
 }

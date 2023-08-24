@@ -82,6 +82,10 @@
   .portfolio__list {
     font-size: 28px;
   }
+
+  .portfolio__link-arrow {
+    font-size: 28px;
+}
 }
 
 @media screen and (max-width: 500px) {
@@ -99,4 +103,8 @@
     line-height: 28px;
     letter-spacing: -0.72px;
   }
+
+  .portfolio__link-arrow {
+    font-size: 18px;
+}
 }

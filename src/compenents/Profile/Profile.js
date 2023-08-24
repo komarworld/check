@@ -47,10 +47,10 @@ function Profil() {
             </>
           ) : (
             <>
-              <button type='button' className='profile__link-edit' href='/' onClick={handleEditClick} aria-label='Редактировать профиль'>
+              <button type='button' className='profile__link profile__link profile__link-edit' href='/' onClick={handleEditClick} aria-label='Редактировать профиль'>
                 Редактировать
               </button>
-              <button type='button' className='profile__link-exit' href='/signout' aria-label='Выйти из аккаунта'>
+              <button type='button' className='profile__link profile__link-exit' href='/signout' aria-label='Выйти из аккаунта'>
                 Выйти из аккаунта
               </button>
             </>
