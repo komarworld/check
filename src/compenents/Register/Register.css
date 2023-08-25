@@ -1,11 +1,14 @@
 .register {
-  max-width: 396px;
-  width: 100%;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .register__container {
-  margin-top: 70px;
+  padding: 0 30px;
+  margin: 70px auto;
+  width: 396px;
 }
 
 .register__logo{
@@ -33,6 +36,7 @@
   font-size: 24px;
 }
 
+<<<<<<< Updated upstream
 .register__form {
   display: flex;
   flex-direction: column;
@@ -136,6 +140,8 @@
   opacity: 0.7;
 }
 
+=======
+>>>>>>> Stashed changes
 @media screen and (max-width: 800px) {
   .register__container {
     margin-top: 232px;
@@ -145,39 +151,19 @@
 @media screen and (max-width: 500px) {
   .register {
     text-align: center;
-    margin: 0 auto;
     padding-top: 56px;
-  }
-  .register__button {
-    font-size: 12px;
-    margin-top: 157px;
   }
 
   .register__title {
     text-align: center;
-    margin-top: 46px;
+    margin-top: 48px;
     margin-bottom: 80px;
   }
-
-  .register__label {
-    text-align: left;
-  }
-
+  
   .register__container {
     margin: 0 auto 30px;
     text-align: center;
     max-width: calc(100% - 60px);
   }
-  .register__message, .register__link {
-    font-size: 12px;
-  }
 
-  .register__message {
-    margin: 14px 0 30px;
-  }
-
-  .register__error-message {
-    text-align: left;
-
-  }
 }

@@ -1,8 +1,16 @@
 import './Login.css';
 import logo from '../../images/logo.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import AuthForm from '../AuthForm/AuthForm';
 
-function Login() {
+function Login({setLoggedIn}) {
+  const navigate = useNavigate();
+  
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    navigate('/movies');
+    setLoggedIn(true);
+    }
   return (
     <main className='login'>
       <div className= 'login__container'>
@@ -10,39 +18,38 @@ function Login() {
           <img alt='лого в виде бублика' className='login__logo-img' src={logo} />
         </Link>
         <h2 className='login__title'>Рады видеть!</h2>
-        <form className='login__form'>
-          <fieldset className='login__fieldset'>
-            <label className='login__label'>E-mail</label>
-            <input
-              required
-              className='login__input'
-              type='email'
-              placeholder='Введите Email'>
-            </input>
-            <span className='login__error'></span>
-          </fieldset>
-          <fieldset className='login__fieldset'>
-            <label className='login__label'>Пароль</label>
-            <input
-              required
-              type='password'
-              className='login__input'
-              placeholder='Введите пароль'>
-            </input>
-            <span className='login__error' type='text'>
-              Что-то пошло не так...
-            </span>
-          </fieldset>
-          <button className='login__button' type='submit'>
-          Войти
-        </button>
-        </form>
-        <p className='login__message'>
-        Еще не зарегистрированы?{' '}
-          <Link to='/signup' className='login__link'>
-            Регистрация
-          </Link>
-        </p>
+        <AuthForm
+          name= {'login'}
+          onSubmit={handleSubmit}>
+             <fieldset className='form__fieldset'>
+              <label htmlFor='name' className='form__label'>
+                E-mail
+              </label>
+              <input 
+                required
+                className='form__input'
+                type='email'
+                id='email'
+                name='email'
+                minLength='2'
+                placeholder='Введите Email' />              
+              <span className='form__input-error'>{}</span>
+            </fieldset>
+            <fieldset className='form__fieldset'>
+              <label htmlFor='email' className='form__label'>
+                Пароль
+              </label>
+              <input 
+                className='form__input'
+                type='password' 
+                id='name'
+                name='passwaord'
+                minLength='4'
+                required
+                placeholder='Пароль'/>
+              <span className='form__input-error'>{}</span>
+            </fieldset>
+        </AuthForm> 
       </div>
     </main>
   );

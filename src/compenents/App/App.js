@@ -14,23 +14,23 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const location = useLocation();
-  const isLoading = false;
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (location.pathname === '/') {
       setLoggedIn(false);
     }
   }, [location]);
-
+  
   return (
     <div className="page">
       <Header loggedIn={loggedIn} />
       <Routes>
         <Route path='/' element={<Main />} />
-        <Route path='/signup' element={<Register />} />
-        <Route path='/signin' element={<Login />} />
+        <Route path='/signup' element={<Register setLoggedIn={setLoggedIn} />} />
+        <Route path='/signin' element={<Login setLoggedIn={setLoggedIn} />} />
         <Route path='/movies' element={<Movies />} />
         <Route path='/saved-movies' element={<SavedMovies />} />
         <Route path='/profile' element={<Profile />} />
