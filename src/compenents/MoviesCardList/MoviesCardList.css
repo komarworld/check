@@ -1,14 +1,11 @@
 .movie-cards {
-  margin: 0 auto;
-  width: 1140px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   padding: 70px 70px 30px;
 }
 
 .movie-cards__not-found {
-  display: flex;
-  justify-content: center;
   font-size: 15px;
   font-weight: 500;
   line-height: normal;
@@ -17,13 +14,12 @@
 
 .movie-cards__container {
   margin: 0;
-  flex: 1 1;
-  width: 100%;;
   padding: 0;
-  list-style-type: none;
+  flex: 1 1;
+  align-items: flex-start;
+  width: 1140px;
   display: grid;
-  column-gap: 20px;
-  row-gap: 32px;
+  gap: 32px 20px;
   grid-template-columns: repeat(4, 1fr);
 }
 
@@ -52,7 +48,7 @@
 }
 
 @media screen and (max-width: 1280px) {
-  .movie-cards {
+  .movie-cards__container  {
     width: 100%;
   }
 }
