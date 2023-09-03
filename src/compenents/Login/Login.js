@@ -5,7 +5,7 @@ import AuthForm from '../AuthForm/AuthForm';
 import { useFormWithValidation } from '../../utils/UseformWithValidation';
 import { useState } from 'react';
 import { authorization } from '../../utils/MainApi';
-import { UNAUTHORIZED_ERROR, LOGIN_ERROR  } from '../../constants/constants'
+import { UNAUTHORIZED_ERROR, LOGIN_ERROR, UNAUTHORIZED_ERR  } from '../../constants/constants'
 
 
 export function Login({setLoggedIn, isLoading, setIsLoading, setCurrentUser}) {
@@ -33,13 +33,14 @@ export function Login({setLoggedIn, isLoading, setIsLoading, setCurrentUser}) {
       })
       .catch((err) => {
         setLoggedIn(false);
-        if (err === 401) {
+        if (err === UNAUTHORIZED_ERR) {
           setErrorText(UNAUTHORIZED_ERROR);
         }
           setErrorText(LOGIN_ERROR );
       })
       .finally(() => setIsLoading(false));
     }
+
   return (
     <main className='login'>
       <div className= 'login__container'>

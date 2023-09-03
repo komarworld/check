@@ -2,7 +2,7 @@ import './SavedMovies.css';
 import { useState, useEffect } from 'react';
 import Search from '../Search/Search';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-//import filterMovies from '../../utils/Filter';
+import { SHORT_DURATION } from '../../constants/constants'
 
 function SavedMovies({
   likedMovies,
@@ -38,7 +38,7 @@ function SavedMovies({
       setIsValid(false);
       setButtonDisabled(true);
       if (checkedShortSaved) {
-        setFoundSavedMovies(likedMovies.filter(movie => movie.duration < 40));
+        setFoundSavedMovies(likedMovies.filter(movie => movie.duration < SHORT_DURATION));
       } else {
         setFoundSavedMovies(likedMovies);
       }
@@ -50,7 +50,7 @@ function SavedMovies({
 
   function filterMovies(moviesArr, text, isshort) {
     return moviesArr.filter(movie => movie.nameRU.toLowerCase().includes(text.toLowerCase()) &&
-      (isshort ? movie.duration < 40 : true));
+      (isshort ? movie.duration < SHORT_DURATION : true));
   }
 
   function displaySavedMovies(short) {

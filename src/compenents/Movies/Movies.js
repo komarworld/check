@@ -6,6 +6,20 @@ import Preloader from '../Preloader/Preloader'
 import { getAllMovies } from '../../utils/MoviesApi'
 import { useResize } from '../../utils/CheckResize';
 
+import{
+SHORT_DURATION,
+ONEMORE,
+RESOLUTION_L,
+RESOLUTION_M,
+RESOLUTION_S,
+START_ITEMS_L,
+START_ITEMS_M,
+START_ITEMS_S,
+START_ITEMS_XS,
+ADDITIONAL_ITEMS_L,
+ADDITIONAL_ITEMS_M,
+ADDITIONAL_ITEMS_S} from '../../constants/constants'
+
 
 function Movies({
   likedMovies,
@@ -36,12 +50,6 @@ function Movies({
     handleShowButtonMore(startItems);
   }, [windowWidth]);
 
-    /*
-  useEffect(() => {
-    settingAmountFilms();
-    checkedShort ? handleShowButtonMore(shortMovies) : handleShowButtonMore(searchedMovies);
-  }, [windowWidth]);
-  */
 
   useEffect(() => {
     if (localStorage.movieSearchText) {
@@ -61,13 +69,6 @@ function Movies({
     handleShowButtonMore(startItems);
   }, [searchedMovies, shortMovies])
 
-/*
-  useEffect(() => {
-    isChecked ? handleShowButtonMore(shortMovies) : handleShowButtonMore(searchedMovies);
-    handleNotMoviesResult();
-    savingLocalData();
-  }, [searchedMovies, shortMovies])
-*/ 
 
   function handleChange(event) {
     setValue(event.target.value);
@@ -81,7 +82,7 @@ function Movies({
   }
   
   function checkshowButtonMore(moviesArr, InitialMovies) {
-    moviesArr.length >= InitialMovies + 1 ?
+    moviesArr.length >= InitialMovies + ONEMORE ?
       setButtonMore(true) : setButtonMore(false);
   }
 
@@ -111,7 +112,7 @@ function Movies({
 
   function filterMovies(moviesArr, text, filter) {
     return moviesArr.filter(movie => movie.nameRU.toLowerCase().includes(text.toLowerCase()) &&
-      (filter ? movie.duration < 40 : true));
+      (filter ? movie.duration < SHORT_DURATION : true));
   }
 
 
@@ -174,18 +175,18 @@ function Movies({
   }
 
   function settingAmountFilms() {
-    if (windowWidth >= 1000) {
-      setStartItems(16);
-      setAddItems(4);
-    } else if (windowWidth >= 800) {
-      setStartItems(12);
-      setAddItems(3);
-    } else if (windowWidth >= 500) {
-      setStartItems(8);
-      setAddItems(2);
+    if (windowWidth >= RESOLUTION_L) {
+      setStartItems(START_ITEMS_L);
+      setAddItems(ADDITIONAL_ITEMS_L);
+    } else if (windowWidth >= RESOLUTION_M) {
+      setStartItems(START_ITEMS_M);
+      setAddItems(ADDITIONAL_ITEMS_M);
+    } else if (windowWidth >= RESOLUTION_S) {
+      setStartItems(START_ITEMS_S);
+      setAddItems(ADDITIONAL_ITEMS_S);
     } else {
-      setStartItems(5);
-      setAddItems(2);
+      setStartItems(START_ITEMS_XS);
+      setAddItems(ADDITIONAL_ITEMS_S);
     }
   }
 

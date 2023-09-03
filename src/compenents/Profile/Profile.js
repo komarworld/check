@@ -14,15 +14,16 @@ function Profil({ isLoading, setIsLoading, setCurrentUser, onSignOut }) {
   const [isEdit, setIsEdit] = useState(false);
   const [notificationText, setNotificationText] = useState('');
 
-  useEffect(() => {
-    values.name = currentUser.name;
-    values.email = currentUser.email;
-  }, [])
 
-  
+  function handleisEdit() {
+    setIsEdit(!isEdit);
+    setNotificationText('');
+  }
+
   useEffect(() => {
-    if (values['name'] === currentUser.name && values.email=== currentUser.email) {
+    if (values['name'] === currentUser.name && values['email'] === currentUser.email) {
       setDisabledButton(true);
+      console.log('no')
     } else {
       setDisabledButton(false);
       setNotificationText('');
@@ -31,18 +32,21 @@ function Profil({ isLoading, setIsLoading, setCurrentUser, onSignOut }) {
   
 
   useEffect(() => {
+    values.name = currentUser.name;
+    values.email = currentUser.email;
+  }, [])
+
+ 
+
+  useEffect(() => {
     if (!values.name || !values.email) {
       setDisabledButton(true);
-    } else {
-      setDisabledButton(false);
-    }
+    } 
   }, [values.name, values.email]);
 
-  function handleisEdit() {
-    setIsEdit(!isEdit);
-    setNotificationText('');
-  }
-
+  
+ 
+ 
   function handleSubmit(evt) {
       evt.preventDefault();
       setIsLoading(true);
@@ -71,7 +75,7 @@ function Profil({ isLoading, setIsLoading, setCurrentUser, onSignOut }) {
         })
         .finally(() => {
           setIsLoading(false);
-          setDisabledButton(true);
+         setDisabledButton(true);
         })
     }
 

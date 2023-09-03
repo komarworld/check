@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import AuthForm from '../AuthForm/AuthForm';
 import { useFormWithValidation } from '../../utils/UseformWithValidation';
 import { registration, authorization } from '../../utils/MainApi';
-import { EMAIL_EXISTS_ERROR,REGISTER_ERROR } from '../../constants/constants'
+import { EMAIL_EXISTS_ERROR, REGISTER_ERROR, CONFLICT_ERR } from '../../constants/constants'
 
 function Register({setLoggedIn, isLoading, setIsLoading, setCurrentUser}) {
 
@@ -50,7 +50,7 @@ function Register({setLoggedIn, isLoading, setIsLoading, setCurrentUser}) {
         })
         .catch((err) => {
 
-          if (err === 409) {
+          if (err === CONFLICT_ERR) {
             setErrorText(EMAIL_EXISTS_ERROR);  
           }
             setErrorText(REGISTER_ERROR);
