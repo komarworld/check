@@ -15,13 +15,13 @@ function Profil({ isLoading, setIsLoading, setCurrentUser, onSignOut }) {
   const [notificationText, setNotificationText] = useState('');
 
   useEffect(() => {
-    values['name'] = currentUser.name;
-    values['email'] = currentUser.email;
+    values.name = currentUser.name;
+    values.email = currentUser.email;
   }, [])
 
   
   useEffect(() => {
-    if (values['name'] === currentUser.name && values['email'] === currentUser.email) {
+    if (values['name'] === currentUser.name && values.email=== currentUser.email) {
       setDisabledButton(true);
     } else {
       setDisabledButton(false);
@@ -49,8 +49,8 @@ function Profil({ isLoading, setIsLoading, setCurrentUser, onSignOut }) {
       setNotificationText('');
   
       updateUserInfo({
-        name: values['name'],
-        email: values['email']
+        name: values.name,
+        email: values.email
       })
         .then((res) => {
           if (res.email) {

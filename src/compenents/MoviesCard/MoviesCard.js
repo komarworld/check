@@ -16,17 +16,14 @@ export default function MoviesCard({
 
   useEffect(() => {
     if (likedMovies) {
-      likedMovies.map((item) => checkId(item));
+      likedMovies.map((item) => {
+        if (item.movieId === movie.id) {
+          setIsLiked(true);
+          movie._id = item._id;
+        }
+      });
     }
   }, [likedMovies, movie])
-
-
-  function checkId(item) {
-    if (item.movieId === movie.id) {
-      setIsLiked(true);
-      movie._id = item._id;
-    }
-  }
 
 
 function handleLikeClick() {

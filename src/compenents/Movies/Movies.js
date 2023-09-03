@@ -5,7 +5,6 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader'
 import { getAllMovies } from '../../utils/MoviesApi'
 import { useResize } from '../../utils/CheckResize';
-import filterMovies from '../../utils/Filter';
 
 
 function Movies({
@@ -17,7 +16,6 @@ function Movies({
   setSearchedMovies,
   notMoviesResult,
   setNotMoviesResult,
-  handleNotMoviesResult,
   checkedShort,
   setCheckedShort,
 }) {
@@ -55,7 +53,7 @@ function Movies({
   }, [])
 
   useEffect(() => {
-    if (movies[0]) {
+    if (movies.length > 0) {
       setNotMoviesResult(false);
     }
     handleNotMoviesResult(shortMovies, searchedMovies);
@@ -82,41 +80,40 @@ function Movies({
     }
   }
   
-  function showButtonMore(moviesArr, InitialMovies) {
+  function checkshowButtonMore(moviesArr, InitialMovies) {
     moviesArr.length >= InitialMovies + 1 ?
       setButtonMore(true) : setButtonMore(false);
   }
 
   function handleShowButtonMore(InitialMovies) {
     checkedShort ?
-      showButtonMore(shortMovies, InitialMovies) :
-      showButtonMore(searchedMovies, InitialMovies);
+    checkshowButtonMore(shortMovies, InitialMovies) :
+    checkshowButtonMore(searchedMovies, InitialMovies);
   }
 
   function handleClickMore() {
-    const sum = startItems + addItems;
-    setStartItems(sum);
-    handleShowButtonMore(sum);
+    const allMovies = startItems + addItems;
+    setStartItems(allMovies);
+    handleShowButtonMore(allMovies);
   }
 
-  /*
+  
   function handleNotMoviesResult() {
-     if (movies[0]) {
-      if (isChecked) {
+     if (movies.length > 0) {
+      if (checkedShort) {
         shortMovies.length === 0 ? setNotMoviesResult(true) : setNotMoviesResult(false);
       } else {
         searchedMovies.length === 0 ? setNotMoviesResult(true) : setNotMoviesResult(false);
       }
     }
   } 
-*/
 
-  /*
-  function filterMovies(moviesList, filter) {
-    return moviesList.filter(movie => movie.nameRU.toLowerCase().includes(value.toLowerCase()) &&
+
+  function filterMovies(moviesArr, text, filter) {
+    return moviesArr.filter(movie => movie.nameRU.toLowerCase().includes(text.toLowerCase()) &&
       (filter ? movie.duration < 40 : true));
   }
-*/
+
 
   function savingLocalData() {
     localStorage.setItem('movieSearchText', value);
@@ -125,12 +122,12 @@ function Movies({
     localStorage.setItem('shortMovies', JSON.stringify(shortMovies));
   }
   
-  function handleGetAllMovies(moviesList) {
+  function getMoviesApi(moviesArr) {
     setButtonMore(false);
     getAllMovies()
     .then((res) => {
       setMovies(res);
-      moviesList === searchedMovies ? 
+      moviesArr === searchedMovies ? 
         setSearchedMovies(filterMovies(res, value, false)) : 
         setShortMovies(filterMovies(res, value, true));
         console.log('получение aRR')
@@ -152,7 +149,7 @@ function Movies({
       setPreloaderOn(true);
       setIsValid(true);
       settingAmountFilms();
-      if (movies[0]) {
+      if (movies.length > 0) {
         setButtonDisabled(false);
         setPreloaderOn(false);
         checked ?
@@ -160,8 +157,8 @@ function Movies({
           setShortMovies(filterMovies(movies, value, true));
       } else {
         checked ?
-          handleGetAllMovies(searchedMovies) :
-          handleGetAllMovies(shortMovies);
+          getMoviesApi(searchedMovies) :
+          getMoviesApi(shortMovies);
       }
     }
   }
