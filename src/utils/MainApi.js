@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://api.diplombella.nomoreparties.sbs';
+export const BASE_URL = 'https://api.diplombella.nomoreparties.sbs';
 export const SERVER_URL = 'https://api.nomoreparties.co'
 
 //export const BASE_URL = 'http://localhost:4000';
