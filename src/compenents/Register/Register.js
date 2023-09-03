@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthForm from '../AuthForm/AuthForm';
 import { useFormWithValidation } from '../../utils/UseformWithValidation';
-import ErrorHandler from '../../utils/ErrorHandler';
 import { registration, authorization } from '../../utils/MainApi';
 import { EMAIL_EXISTS_ERROR,REGISTER_ERROR } from '../../constants/constants'
 
