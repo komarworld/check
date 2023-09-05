@@ -5,16 +5,12 @@ import './Navigation.css';
 
 
 function Navigation({ isLoggedIn }) {
-  const [isBurgerMenu, setIsBurgerMenu] = useState(false);
   const location = useLocation();
 
-  function handleOpenMenu() {
-    setIsBurgerMenu(true)
-  }
-
-  function handleCloseMenu() {
-    setIsBurgerMenu(false)
-  }
+  const [isBurgerOpen, setisBurgerOpen] = useState(false);
+  const toggleMenu = () => {
+    setisBurgerOpen(!isBurgerOpen);
+  };
 
     return (
       <>
@@ -32,12 +28,13 @@ function Navigation({ isLoggedIn }) {
           </NavLink>
         </div>
         <div className='header__burger'>
-          <button className='header__link header__burger-button' aria-label='меню-бургер' type='button' onClick={handleOpenMenu}></button>
+          <button className='header__link header__burger-button' aria-label='меню-бургер' type='button' onClick={toggleMenu}></button>
         </div>
-        <div className={`navigation ${isBurgerMenu ? 'navigation_visible' : ''}`}>
+        {isBurgerOpen && <div className='navigation__overlay' onClick={toggleMenu}></div>}
+        <div onClick={toggleMenu} className={`navigation ${isBurgerOpen ? 'navigation_visible' : ''}`}>
           <div className='navigation__container'>
             <div className='navigation__button'>
-              <button className='navigation__button_type_close' onClick={handleCloseMenu}></button>
+              <button className='navigation__button_type_close' onClick={toggleMenu}></button>
             </div>
             <div className='navigation__links'>
               <Link className='navigation__link' to='/'>
@@ -62,4 +59,4 @@ function Navigation({ isLoggedIn }) {
     );
   }
 
-  export default Navigation;
+export default Navigation;

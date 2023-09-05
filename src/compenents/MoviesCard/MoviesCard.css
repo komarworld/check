@@ -1,14 +1,15 @@
 .movie-card {
   list-style: none;
+  display: grid;
+  align-self: flex-start;
   background-color: #222;
 }
 
 .movie-card__image {
   border-radius: 10px 10px 0 0;
   width: 100%;
-  display: block;
+  height: 180px;
   object-fit: cover;
-  object-position: center;
 }
 
 .movie-card__info {
@@ -16,13 +17,12 @@
   padding: 0 12px;
   display: flex;
   justify-content: space-between;
+
 }
 
 .movie-card__name {
   margin: 0;
   padding: 0;
-  max-width: 206px;
-  white-space: nowrap;
   overflow: hidden;
   text-align: left;
   text-overflow: ellipsis;
@@ -30,7 +30,7 @@
   font-size: 13px;
   font-weight: 500;
   line-height: 16px;
-  flex-basis: 206px;
+
 }
 
 .movies-card__like {
@@ -73,4 +73,3 @@
   line-height: 13px;
   font-weight: 400;
 }
-

@@ -1,0 +1,122 @@
+export const BASE_URL = 'https://api.diplombella.nomoreparties.sbs';
+export const SERVER_URL = 'https://api.nomoreparties.co'
+
+//export const BASE_URL = 'http://localhost:4000';
+
+function checkResponse(res) {
+	if (!res.ok) {
+		return Promise.reject(`Ошибка: ${res.status}`);
+	}
+	return res.json();
+};
+
+export function registration({name, email, password}) {
+	return (
+		fetch(`${BASE_URL}/signup`, {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({name, email, password})
+		}).then((res) => checkResponse(res))
+	)
+};
+
+export function authorization({email, password}) {
+	return (
+		fetch(`${BASE_URL}/signin`, {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ email, password })
+		}).then((res) => checkResponse(res))
+	)
+};
+
+// проверяем токен 
+export function checkToken(token) {
+	return (
+		fetch(`${BASE_URL}/users/me`, {
+			method: 'GET',
+			headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` },
+		}).then((res) => checkResponse(res))
+	)
+};
+
+// информация о пользователе с сервера
+export function getUserInfo() {
+	const token = localStorage.getItem('token')
+	return fetch(`${BASE_URL}/users/me`, {
+    method: 'GET',
+		headers: {
+			authorization: `Bearer ${token}`,
+			"Content-Type": "application/json",
+		},
+	}).then((res) => checkResponse(res))
+};
+
+// update profile
+export function updateUserInfo({ email, name }) {
+	const token = localStorage.getItem('token')
+	return fetch(`${BASE_URL}/users/me`, {
+		method: 'PATCH',
+		headers: {
+			authorization: `Bearer ${token}`,
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({ email, name })
+	}).then((res) => checkResponse(res))
+};
+
+// сохраняем фильм
+export function addFavoriteMovie(movie) {
+	const token = localStorage.getItem('token')
+	return (
+		fetch(`${BASE_URL}/movies`, {
+			method: 'POST',
+			headers: {
+				authorization: `Bearer ${token}`,
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				country: movie.country,
+				director: movie.director,
+				duration: movie.duration,
+				year: movie.year,
+				description: movie.description,
+				image: `https://api.nomoreparties.co${movie.image.url}`,
+				trailerLink: movie.trailerLink,
+				thumbnail: `https://api.nomoreparties.co${movie.image.url}`,
+				movieId: movie.id,
+				nameRU: movie.nameRU,
+				nameEN: movie.nameEN,
+			}),
+		}).then((res) => checkResponse(res))
+	)
+};
+
+// удаляние liked фильма
+export function deleteFavoriteMovie(movie) {
+	const token = localStorage.getItem('token');
+	console.log('hey, delete')
+	return (
+		fetch(`${BASE_URL}/movies/${movie._id}`, {
+			method: 'DELETE',
+			headers: {
+				authorization: `Bearer ${token}`,
+				"Content-Type": "application/json",
+			},
+		}).then((res) => checkResponse(res))
+	)
+};
+
+// получить saved movie
+export function getSavedMovies () {
+	const token = localStorage.getItem('token')
+	return fetch(`${BASE_URL}/movies`, {
+		headers: {
+			method: 'GET',
+			authorization: `Bearer ${token}`,
+			"Content-Type": "application/json",
+		},
+	}).then((res) => checkResponse(res))
+};

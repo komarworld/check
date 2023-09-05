@@ -1,16 +1,40 @@
-import Checkbox from '../CheckBox/CheckBox';
-import './Search.css';
 
-function SearchForm() {
+import './Search.css';
+import Checkbox from '../CheckBox/CheckBox';
+
+function SearchForm({
+  value,
+  handleSubmit,
+  handleChange,
+  isValid,
+  buttonDisabled,
+  checkedShort,
+  handleChecked,
+  checkedShortSaved,}) {
+
+   
   return (
     <section className='search' aria-label='Поисковая строка'>
       <div className='search__container'>
-        <form className='search-form' autoComplete='off'>
-          <input className='search-form__input'type='text' autoComplete='nope' minLength='2' placeholder='Фильм' required />
-          <button className='search-form__button' type='submit' aria-label='Поиск'></button>
-          <Checkbox />
-        </form>
-      </div>
+        <form className='search-form' onSubmit={handleSubmit} noValidate >
+          <input 
+          className='search-form__input'
+          name="Search"
+          type='text' 
+          autoComplete='off'
+          value={value || ''}
+          onChange={handleChange}
+          placeholder='Фильм'
+          required />
+          <button className='search-form__button' type='submit' disabled={buttonDisabled} aria-label='Поиск'></button>
+      
+      <Checkbox 
+        handleChecked={handleChecked}
+        checkedShort={checkedShort}
+        checkedShortSaved ={checkedShortSaved}
+      />
+      </form>
+    </div>
     </section>
   );
 }

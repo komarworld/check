@@ -1,3 +1,7 @@
-Дипломная работа Yandex Practicum
+Дипломная работа Bella - Yandex Practicum 
 
-МАкет Dark-5
+Макет Dark-5
+
+* [Дипломная работа](http://diplombella.nomoreparties.sbs)
+
+* [Ссылка на pullrequest](https://github.com/komarworld/movies-explorer-frontend/pull/2)
